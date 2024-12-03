@@ -2,7 +2,6 @@ import re
 
 left = []
 right = []
-
 txt = open('day1-input.txt').read().split('\n')
 
 for line in txt:
@@ -20,3 +19,15 @@ for i in range(len(left)):
   distance_sum += distance
 
 print(distance_sum)
+
+# Part 2
+left_set = set(left)
+dictionary = {}
+for number in right: 
+  if number in left_set: 
+    dictionary[number] = 1 + dictionary.get(number, 0)
+
+similarity_score = 0
+for number in left_set:
+  similarity_score += ( number * dictionary.get(number, 0))
+print(similarity_score)
